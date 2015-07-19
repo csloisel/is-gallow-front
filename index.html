@@ -4,18 +4,25 @@
 		<meta charset="utf-8">
 		<title>Is GallowBoob on the front page of reddit?</title>
 		<style>
-			#answer {
+			body {
 				text-align: center;
-				font-size: 4em;
 				font-weight: bold;
 				font-family: sans-serif;
-				text-transform: capitalize;
+			}
+			h1 {
+				font-size: 2em;
 				margin-top: 2em;
+			}
+			#answer {
+				font-size: 4em;
+				text-transform: capitalize;
 			}
 		</style>
 	</head>
 	<body>
+		<h1>Is GallowBoob on the front page of reddit?</h1>
 		<p id="answer">Checking...</p>
+		<p id="posts"></p>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 		<script>
 			jQuery(document).ready( function( $ ) {
@@ -26,8 +33,12 @@
 						var author = post.data.author;
 						if ( author === 'GallowBoob' ) {
 							$('#answer').text('yes.');
+							$('#posts').append(
+								$('<a>')
+									.attr('href', post.data.url)
+									.text(post.data.title)
+							);
 							isFront = true;
-							return false;
 						}
 					} )
 					if ( !isFront ) {
