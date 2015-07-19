@@ -35,7 +35,7 @@
 							$('#answer').text('yes.');
 							$('#posts').append(
 								$('<a>')
-									.attr('href', post.data.url)
+									.attr('href', 'http://reddit.com' + post.data.permalink)
 									.text(post.data.title)
 							);
 							isFront = true;
