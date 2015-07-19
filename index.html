@@ -9,6 +9,12 @@
 				font-weight: bold;
 				font-family: sans-serif;
 			}
+			a {
+				text-decoration: none;
+			}
+			a:hover {
+				text-decoration: underline;
+			}
 			h1 {
 				font-size: 2em;
 				margin-top: 2em;
@@ -17,12 +23,16 @@
 				font-size: 4em;
 				text-transform: capitalize;
 			}
+			#posts {
+				padding: 0;
+				list-style: none;
+			}
 		</style>
 	</head>
 	<body>
 		<h1>Is GallowBoob on the front page of reddit?</h1>
 		<p id="answer">Checking...</p>
-		<p id="posts"></p>
+		<ul id="posts"></ul>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 		<script>
 			jQuery(document).ready( function( $ ) {
@@ -34,9 +44,11 @@
 						if ( author === 'GallowBoob' ) {
 							$('#answer').text('yes.');
 							$('#posts').append(
-								$('<a>')
-									.attr('href', 'http://reddit.com' + post.data.permalink)
-									.text(post.data.title)
+								$('<li>').append(
+									$('<a>')
+										.attr('href', 'http://reddit.com' + post.data.permalink)
+										.text(post.data.title)
+								)
 							);
 							isFront = true;
 						}
