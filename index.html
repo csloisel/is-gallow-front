@@ -38,22 +38,21 @@
 			jQuery(document).ready( function( $ ) {
 				$.getJSON( 'http://www.reddit.com/r/all/.json?limit=50', function( r ) {
 					var posts = r.data.children;
-					var isFront = false;
-					$.each( posts, function( i, post ) {
+					var isFront = posts.some( function( post ) {
 						var author = post.data.author;
-						if ( author === 'GallowBoob' ) {
-							$('#answer').text('yes.');
-							$('#posts').append(
-								$('<li>').append(
-									$('<a>')
-										.attr('href', 'http://reddit.com' + post.data.permalink)
-										.text(post.data.title)
-								)
-							);
-							isFront = true;
-						}
-					} )
-					if ( !isFront ) {
+						return author === 'GallowBoob';
+					} );
+					
+					if ( isFront ) {
+						$('#answer').text('yes.');
+						$('#posts').append(
+							$('<li>').append(
+								$('<a>')
+								.attr('href', 'http://reddit.com' + post.data.permalink)
+								.text(post.data.title)
+							)
+						);
+					} else {
 						$('#answer').text('no.');
 					}
 				} );
