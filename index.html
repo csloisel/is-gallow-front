@@ -38,11 +38,14 @@
 			jQuery(document).ready( function( $ ) {
 				$.getJSON( 'https://www.reddit.com/r/all/.json?limit=50', function( r ) {
 					var posts = r.data.children;
-					var isFront = false;
-					$.each( posts, function( i, post ) {
+					var gallowBoobPosts = posts.filter( function( post ) {
 						var author = post.data.author;
-						if ( author === 'GallowBoob' ) {
-							$('#answer').text('yes.');
+						return author === 'GallowBoob';
+					} );
+					
+					if ( gallowBoobPosts.length > 0 ) {
+						$('#answer').text('yes.');
+						gallowBoobPosts.forEach( function( post ) {
 							$('#posts').append(
 								$('<li>').append(
 									$('<a>')
@@ -50,10 +53,8 @@
 										.text(post.data.title)
 								)
 							);
-							isFront = true;
-						}
-					} )
-					if ( !isFront ) {
+						} );
+					} else {
 						$('#answer').text('no.');
 					}
 				} );
