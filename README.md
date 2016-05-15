@@ -1,5 +1,5 @@
-# Is Gallow Front  
+# Is YhCHKN Front  
 
-Is GallowBoob on the front page of reddit?
+Is YhCHKN on the front page of reddit?
 
-Demo: http://csloisel.github.io/is-gallow-front
+Demo: http://poleegone.github.io/is-yhchkn-front
